@@ -1,15 +1,17 @@
 import express from "express"
 import type {Request, Response} from "express"
-
+import data from "../data/data.ts"
+import cors from "cors"
 
 const  app = express();
 app.use(express.urlencoded({ extended: true }));
+app.use(cors({ origin:"*" }))
 
 app.get('/',(_req:Request,res:Response) => {
     res.send("A szerver fut!")
 })
 app.get('/products',(req:Request,res:Response) => {
-    res.json([{id: 1, name: "Termék 1"}, {id: 2, name: "Termék 2"}])
+    res.json(data)
 })
 
 app.post("/",(req:Request,res:Response) => {
